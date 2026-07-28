@@ -1,85 +1,83 @@
-const status=
-document.getElementById("shopStatus");
+// ==========================
+// SHOP STATUS
+// ==========================
 
+const status = document.getElementById("shopStatus");
 
 const currentHour = new Date().getHours();
 
-if (currentHour >= 8 && currentHour < 19) {
-   status.innerHTML = "We are open today(8:00 AM - 7:00 PM)!";
-}else {
-    status.innerHTML = "We are closed now(Opens at 8:00 AM)!";
+if (status) {
+    if (currentHour >= 8 && currentHour < 19) {
+        status.innerHTML = "We are open today (8:00 AM - 7:00 PM)!";
+    } else {
+        status.innerHTML = "We are closed now (Opens at 8:00 AM)!";
+    }
 }
 
+
 const quoteButton = document.getElementById("quoteButton");
-quoteButton.addEventListener("click", function() {
-    alert("Thank you for contacting Solai Saw Mills!");
-});
 
-const contactForm = document.querySelector(".contact-form");
+if (quoteButton) {
+    quoteButton.addEventListener("click", function () {
+        alert("Thank you for contacting Solai Saw Mills!");
+    });
+}
 
-contactForm.addEventListener("submit", function(event){
-
-    event.preventDefault();
-
-    alert("Thank you for contacting Solai Saw Mills! We will get back to you soon.");
-
-});
+// ==========================
+// CONTACT FORM
+// ==========================
 
 const form = document.getElementById("contactForm");
 
-const nameInput = document.getElementById("name");
+if (form) {
 
-const emailInput = document.getElementById("email");
+    const nameInput = document.getElementById("name");
+    const emailInput = document.getElementById("email");
+    const phoneInput = document.getElementById("phone");
+    const messageInput = document.getElementById("message");
+    const formMessage = document.getElementById("formMessage");
 
-const phoneInput = document.getElementById("phone");
+    form.addEventListener("submit", function (event) {
 
-const messageInput = document.getElementById("message");
+        event.preventDefault();
 
-const formMessage = document.getElementById("formMessage");
+        const name = nameInput.value.trim();
+        const email = emailInput.value.trim();
+        const phone = phoneInput.value.trim();
+        const message = messageInput.value.trim();
 
-form.addEventListener("submit", function(event){
+        if (
+            name === "" ||
+            email === "" ||
+            phone === "" ||
+            message === ""
+        ) {
 
-});
+            formMessage.textContent = "Please fill all required fields.";
+            formMessage.style.color = "red";
+            return;
+        }
 
-form.addEventListener("submit", function(event){
+        formMessage.textContent =
+            `Thank you, ${name}! We received your enquiry.`;
 
-    event.preventDefault();
+        formMessage.style.color = "green";
 
-});
+        form.reset();
 
-const name = nameInput.value.trim();
-
-const email = emailInput.value.trim();
-
-const phone = phoneInput.value.trim();
-
-const message = messageInput.value.trim();
-
-if(
-
-name === "" ||
-
-email === "" ||
-
-phone === "" ||
-
-message === ""
-
-){
-
-    formMessage.textContent =
-
-    "Please fill all required fields.";
-
-    return;
-
+    });
 }
 
-formMessage.textContent =
+productList.innerHTML += `
+<div class="product-card">
+    <img src="images/products/raw-timber.jpg.jpg" alt="${product.name}">
 
-`Thank you, ${name}! We received your enquiry.`;
+    <h3>${product.name}</h3>
 
-formMessage.style.color = "green";
+    <p>${product.category}</p>
 
-form.reset();
+    <span class="price">${product.price}</span>
 
+    <button>View Details</button>
+</div>
+`;
